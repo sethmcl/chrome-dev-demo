@@ -6,7 +6,7 @@ var hostname    = require('os').hostname(),
     http        = require('http');
     express     = require('express'),
     consolidate = require('consolidate'),
-    PORT        = 4099;
+    PORT        = 5000;
 
 // The Venus application object  
 function Server() {};
@@ -60,7 +60,26 @@ Server.prototype.initRoutes = function () {
   app.get('/', function (request, response) {
     response.render('index', { hostname: hostname });
   });
-}
+
+  app.get('/networking', function (request, response) {
+    var delay = request.query['delay'] || 0;
+
+    if (delay) {
+      setTimeout(render, delay);
+    } else {
+      render();
+    }
+
+    function render() {
+      response.render('networking', {});
+    }
+
+  });
+
+  app.get('/dom', function (request, response) {
+    response.render('dom', {});
+  });
+};
 
 // Start Express server
 Server.prototype.start = function (port) {

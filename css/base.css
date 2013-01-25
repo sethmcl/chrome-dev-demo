@@ -1,0 +1,18 @@
+body {
+  font-family: Helvetica;
+  margin: 30px 0 0 50px;
+  color: #666;
+}
+
+h1 {
+  font-size: 2.5em;
+}
+
+h2:hover+p {
+  background: rgba(100, 100, 255, .2);
+  padding: 10px;
+}
+
+h2:hover+p:before {
+  content: '>';
+}
